@@ -23,4 +23,8 @@ function core.entity.add(entity)
 end
 function core.entity.remove(entity)
 	game.entities[entity.id] = nil
+	for k,v in pairs(entity.systems) do
+		v.targets[entity.id] = nil
+
+	end
 end
