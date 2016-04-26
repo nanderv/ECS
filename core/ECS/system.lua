@@ -1,8 +1,7 @@
 core.system = {}
 core.system = {}
 core.requirements_to_systems = {}
-local  b = { __mode = "v" }
-setmetatable(core.requirements_to_systems, b) 
+
 
 local function importance_func(x1, x2)
 	if not x1.importance then

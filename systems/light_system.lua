@@ -24,11 +24,15 @@ function light.update(dt)
 
 			v:setPosition(game.entities[k].position.x,game.entities[k].position.y)
 		end
-	    light.world:update()	
+		if light.world then
+	    	light.world:update()	
+	    end
 end
 function light.draw()
+	if light.world then
 	    light.world:drawShadow()
         light.world:drawShine()
+    end
 end
 
 

@@ -14,6 +14,7 @@ function ctx:update(dt)
 end
 function ctx:draw()
     for k,v in core.system.orderedPairs(game.draw_systems) do
+        
         v.draw()
     end
 end

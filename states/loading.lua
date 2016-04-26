@@ -36,8 +36,23 @@ loading.phases = {
 }
 -- Leave loading screen
 function loading:leave(from)
+    for k,v in pairs(core.requirements_to_systems) do
+        print(k)
+        for l,w in pairs(v) do
+            print(">> SYSTEM "..l..": "..w.name)
+        end
+    end
     for k,v in pairs(game.systems) do
         print("Running system "..v.name)
+    end
+    for k,v in pairs(game.entities) do
+        print("Entity ".. v.name)
+        for l,w in pairs(v) do
+            print(">>> "..l)
+        end
+        for l,w in pairs(v.systems) do
+            print(">>> System: "..l)
+        end
     end
     to_load = false
 end
@@ -45,6 +60,8 @@ function loading:update()
     if self.loaded <= #self.phases then
         self.phases[self.loaded]()
         self.loaded = self.loaded + 1
+--        love.timer.sleep(0.01)
+
     else
         GS:pop()
     end
