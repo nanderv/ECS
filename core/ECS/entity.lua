@@ -25,6 +25,8 @@ function core.entity.remove(entity)
 	game.entities[entity.id] = nil
 	for k,v in pairs(entity.systems) do
 		v.targets[entity.id] = nil
-
+		if v.unregister then
+			v.unregister(entity)
+		end
 	end
 end

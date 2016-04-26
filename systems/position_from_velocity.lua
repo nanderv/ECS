@@ -1,7 +1,7 @@
 local system = {}
 
 system.name = "p_from_v"
-
+system.importance = 2
 system.update = function(dt)
 	for k,v in pairs(system.targets) do
 		v.position.x = v.position.x + v.velocity.x * dt

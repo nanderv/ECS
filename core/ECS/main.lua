@@ -3,6 +3,11 @@ require 'core.ECS.entity'
 require 'core.ECS.component'
 
 function core.reset_game()
+	models = {}
+	models.entity_types = {}
+	models.component_types = {}
+	models.system_types = {}
+
 	game = {}
 	game.entities= {}
 	game.systems = {}

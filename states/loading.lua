@@ -2,7 +2,7 @@ local loading = {}
 loading.loaded = 1
 -- Loading screen phases, split up loading code among these phases
 loading.phases = {
-function()
+    function()
         -- reset global game state
         core.reset_game()
 
@@ -11,8 +11,12 @@ function()
         core.system.add( require 'systems.position_from_velocity', "update")
         core.system.add( require 'systems.acceleration_from_mass', "update")
         core.system.add( require 'systems.draw_from_mass_and_position', "draw")
+        core.system.add( require 'systems.player_input.basic_move', "update")
+        core.system.add( require 'systems.draw_functions.draw_square', "draw")
+        core.system.add( require 'systems.light_system', "both")
 
         -- require entity types
+        require 'entities.agent'
         require 'entities.planet'
 
         -- add entities
@@ -24,12 +28,9 @@ function()
 
         entity = core.entity.add(get_new_planet(400,300,1))
         entity.velocity.y = -500
-        
 
-
-
-
-
+        core.entity.add(get_new_agent(100,100))
+        core.entity.add(get_new_agent(100,400))
     end
 
 }

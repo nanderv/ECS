@@ -11,9 +11,12 @@ function core.component.add_existing(entity, component_name)
 					has_all = false
 				end
 			end
-			if has_all then
+			if has_all and not system.targets[entity.id] then
 				system.targets[entity.id] = entity
 				entity.systems[system.name] = system
+				if system.register then
+					system.register(entity)
+				end
 			end
 		end
 	end
@@ -28,6 +31,9 @@ function core.component.remove(entity, component_name)
 		for _,system in pairs(core.requirements_to_systems[component_name]) do
 			entity.systems[system.name] = nil
 			system.targets[entity.id] = nil
+			if system.unregister then
+				system.unregister(entity)
+			end
 		end
 		entity[component_name] = nil
 end
