@@ -9,7 +9,6 @@ core.system.add( require 'systems.draw_from_mass_and_position', "draw")
 require 'entities.planet'
 entity = core.entity.add(get_new_planet(100,100,30))
 entity = core.entity.add(get_new_planet(200,200,30))
-core.component.remove(entity,"acceleration")
 
 
 
