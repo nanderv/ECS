@@ -29,13 +29,15 @@ loading.phases = {
         entity = core.entity.add(get_new_planet(400,300,1))
         entity.velocity.y = -500
 
-        core.entity.add(get_new_agent(100,100))
-        core.entity.add(get_new_agent(100,400))
+        entity = core.entity.add(get_new_agent(100,100))
+
+        entity = core.entity.add(get_new_agent(100,400))
     end
 
 }
 -- Leave loading screen
 function loading:leave(from)
+    --[[
     for k,v in pairs(core.requirements_to_systems) do
         print(k)
         for l,w in pairs(v) do
@@ -54,6 +56,7 @@ function loading:leave(from)
             print(">>> System: "..l)
         end
     end
+    ]]--
     to_load = false
 end
 function loading:update()

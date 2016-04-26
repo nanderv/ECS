@@ -13,11 +13,16 @@ function light.register(entity)
 	 if entity.light.type =="source" then
 	 	print(entity.id)
 	 	light.objects[entity.id] = light.world:newLight(0, 0, entity.light_source.red, entity.light_source.green, entity.light_source.blue, entity.light_source.range)
+	 	return
 	 end
+	 if not entity.light.type then
+	 	error("Didn't specify light type for entity " .. entity.name)
+	 end
+	 error("Using invalid light type ".. entity.light.type .. " for entity ".. entity.name)
 
 end
 function light.unregister(entity)
-
+	light.objects[entity.id]:clear()
 end
 function light.update(dt)
 		for k,v in pairs(light.objects) do
