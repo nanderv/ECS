@@ -1,5 +1,4 @@
 core.system = {}
-core.system = {}
 core.requirements_to_systems = {}
 
 
@@ -89,19 +88,23 @@ function core.system.add(system,typ)
 	-- Store reference to system
 	game.systems[system.name] = system
 	system.id = #game.systems
-	if typ == "draw" then 
-		game.draw_systems[system.name] = system
-		return
-	elseif  typ == "update" then
-		game.update_systems[system.name] = system
-		return
-	elseif typ == "both" then
-		game.draw_systems[system.name] = system
-		game.update_systems[system.name] = system
-		return
-	else
-		error("Incorrect type ".. typ)
+	local found = false
+	for k,v in pairs( typ ) do
+			if not game.system_categories[v]  then
+				game.system_categories[v] = {}
+			end
+			game.system_categories[v][system.name] = system
+			found = true
+	
+		
 	end
+
+	if found then
+		return
+	end
+		error("Incorrect type ".. typ)
+
+	
 end
 
 
@@ -121,6 +124,9 @@ function core.system.remove(system)
 		end
 	end
 	game.systems[system.name] = nil
-	game.draw_systems[system.name] = nil
-	game.update_systems[system.name] = nil
+	for k,v in pairs(game.system_categories) do
+		game.system_categories[v][system.name] = nil
+	end
+	
+	
 end

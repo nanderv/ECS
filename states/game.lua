@@ -5,13 +5,20 @@ function ctx:enter(dt)
     love.mouse.setGrabbed(true)
 end
 
+function get_nil()
+    return "nil" 
+
+end
 function ctx:update(dt)
-    for k,v in core.system.orderedPairs(game.update_systems) do
+    for k,v in core.system.orderedPairs(game.system_categories.update) do
         v.update(dt)
     end
+ 
+
+
 end
 function ctx:draw()
-    for k,v in core.system.orderedPairs(game.draw_systems) do
+    for k,v in core.system.orderedPairs(game.system_categories.draw) do
         v.draw()
     end
 end

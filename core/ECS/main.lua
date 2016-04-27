@@ -3,6 +3,10 @@ require 'core.ECS.entity'
 require 'core.ECS.component'
 
 function core.reset_game()
+	if game then
+		-- cleanup
+		print("RESETTING")
+	end
 	models = {}
 	models.entity_types = {}
 	models.component_types = {}
@@ -11,6 +15,6 @@ function core.reset_game()
 	game = {}
 	game.entities= {}
 	game.systems = {}
-	game.update_systems = {}
-	game.draw_systems = {}
+	game.system_categories = {}
+	game.thread_count = 0
 end
