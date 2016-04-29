@@ -36,11 +36,7 @@ loading.phases = {
 
         entity = core.entity.add(get_new_agent(100,400))
 
-        local t = love.thread.newThread( "core/ECS/system_thread.lua" )
-        local channel  = love.thread.getChannel( "1" )
-        channel:supply(game.entities)
-        t:start()
-        t:wait()
+     
     end,
 
    
