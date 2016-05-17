@@ -89,6 +89,9 @@ function core.system.add(system,typ)
 	game.systems[system.name] = system
 	system.id = #game.systems
 	local found = false
+	if type(typ) == "string" then
+		typ = {typ}
+	end
 	for k,v in pairs( typ ) do
 			if not game.system_categories[v]  then
 				game.system_categories[v] = {}

@@ -32,8 +32,7 @@ function light.update(dt)
 				error("V == nil")
 			end
 			if game.entities[k] == nil then
-									error("K"..k..tostring(light).." == nil")
-
+					error("K"..k..tostring(light).." == nil")
 			end
 			v:setPosition(game.entities[k].position.x,game.entities[k].position.y)
 		end

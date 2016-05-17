@@ -52,7 +52,7 @@ function love.keypressed(key)
         -- require entity types
         require 'entities.agent'
         require 'entities.planet'
-
+        collectgarbage("collect")
         -- add entities
         local u = Tserial.unpack(t)
         print(u)

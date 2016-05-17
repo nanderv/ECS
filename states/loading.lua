@@ -4,7 +4,6 @@ loading.loaded = 1
 loading.phases = {
     core.reset_game,
     function()
-        -- reset global game state
         
 
         -- add required systems
@@ -16,34 +15,27 @@ loading.phases = {
         core.system.add( require 'systems.draw_functions.draw_square',  {"draw"})
         core.system.add( require 'systems.light_system'(),  {"update","draw"})
         -- require component types
-
+    end, 
+    function()
         require 'components.simple_image'
         -- require entity types
         require 'entities.agent'
         require 'entities.planet'
 
         -- add entities
-        entity = core.entity.add(get_new_planet(300,300,333))
+        entity = core.entity.add(get_new_planet(300,300,10))
         entity.color={red=255,green=255,blue=255}
+        entity.velocity.y = 45
         --entity.mass.counts_as_infinite=true
-        entity = core.entity.add(get_new_planet(200,300,1))
-        entity.velocity.y = 500
+        entity = core.entity.add(get_new_planet(200,300,10))
+        entity.velocity.y = 55
 
-        entity = core.entity.add(get_new_planet(400,300,1))
-        entity.velocity.y = -500
+        entity = core.entity.add(get_new_planet(600,300,20))
+        entity.velocity.y = -50     
 
-        entity = core.entity.add(get_new_agent(100,100))
-
-        entity = core.entity.add(get_new_agent(100,400))
-
-     
-    end,
-
-   
-
-
-
+end,
 }
+
 function loading:enter(from)
     print("STARTING LOADING")
 end

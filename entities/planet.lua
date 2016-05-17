@@ -9,6 +9,7 @@ function get_new_planet(x,y,w)
 	entity.acceleration = {x=0,y=0}
 	entity.mass = {mass = w, counts_as_infinite=false}
 	entity.color = {red=0,green=255,blue=0}
+	
 	return entity
 
 end
