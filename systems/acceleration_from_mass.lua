@@ -27,6 +27,6 @@ system.update = function(dt)
 	end
 end
 
-system.requirements = {position=true,acceleration=true, mass=true}
+system.requirements = {targets={"position","acceleration", "mass"}}
 
 return system

@@ -57,30 +57,35 @@ function core.system.add(system,typ)
 
 
 	-- update requirements_to_systems array
+		system.target_types = {}
 		for k,v in pairs(system.requirements) do
-			if core.requirements_to_systems[k] == nil then
-				core.requirements_to_systems[k] = {}
+			-- add system entity list
+			system[k] = {}
+			system.target_types[#system.target_types+1] = k
+			for _,requirement in pairs(v) do
+				if core.requirements_to_systems[k] == nil then
+					core.requirements_to_systems[k] = {}
+				end
+				core.requirements_to_systems[k][#core.requirements_to_systems[k]+1] = {system, k}
 			end
-			core.requirements_to_systems[k][#core.requirements_to_systems[k]+1] = system
 		end
 	--
 
-	system.targets = {}
-	local  b = { __mode = "v" }
-	setmetatable(system.targets, b) 
 	-- Add entity targets
 	for k,v in pairs( game.entities ) do
 		possible = true
-		for requirement, _ in pairs(system.requirements) do
-			if v[requirement] == nil then
-				possible=  false
+		for kk,zv in pairs(system.requirements)
+			for requirement, _ in pairs(zv) do
+				if v[requirement] == nil then
+					possible=  false
+				end
 			end
-		end
-		if possible then
-			system.targets[entity.id] = v
-			entity.systems[system.name] = system
-			if system.register then
-					system.register(entity)
+			if possible then
+				system[kk][entity.id] = v
+				entity.systems[system.name] = {system, kk}
+				if system.register then
+						system.register(entity, kk)
+				end
 			end
 		end
 	end
@@ -102,7 +107,7 @@ function core.system.add(system,typ)
 		
 	end
 
-	if found then
+	if found then 
 		return
 	end
 		error("Incorrect type ".. typ)

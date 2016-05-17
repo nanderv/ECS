@@ -48,7 +48,7 @@ function light.draw()
 end
 
 
-light.requirements = {light=true,position=true}
+light.requirements = {targets = {"light","position"}}
 
 return light
 end

@@ -11,6 +11,6 @@ system.draw = function()
 	love.graphics.setColor( 255,255,255,255)
 end
 
-system.requirements = {mass=true,position=true, color=true}
+system.requirements = {targets={"mass","position", "color"}}
 
 return system

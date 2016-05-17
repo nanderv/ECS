@@ -30,6 +30,6 @@ system.update = function(dt)
 	end
 end
 
-system.requirements = {position=true,basic_move=true,speed=true}
+system.requirements = {targets={"position","basic_move" ,"speed"}}
 
 return system

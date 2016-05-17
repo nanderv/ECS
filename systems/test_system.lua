@@ -5,6 +5,6 @@ test_system.draw = function()
 		love.graphics.print(k,10,10)
 	end
 end
-test_system.requirements = {test=true,AA=true}
+test_system.requirements = {targets={"test","AA"}}
 
 return test_system

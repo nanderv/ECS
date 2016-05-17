@@ -9,6 +9,6 @@ system.update = function(dt)
 	end
 end
 
-system.requirements = {velocity=true,position=true}
+system.requirements = {targets={"velocity","position"}}
 
 return system
